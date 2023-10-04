@@ -16,7 +16,12 @@
     "prod": {
       "api_gateway_stage": "api",
       "environment_variables": {
-        "DEBUG": "False"
+        "DEBUG": "False",
+        "DB_USER": "postgres",
+        "DB_PASSWORD": "salesproject123",
+        "DB_HOST": "sales-project-db.c84otiooqlgg.us-east-1.rds.amazonaws.com",
+        "DB_PORT": "5432",
+        "DB_NAME": "sales_project_dev"
       }
     }
   }

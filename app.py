@@ -49,7 +49,7 @@ class ProductSchema(Schema):
     name = fields.String()
     price = fields.Float()
     unit_measure_id = fields.Integer()
-    # unit_measures = fields.Nested(UnitMeasure)
+    unit_measures = fields.Nested(UnitMeasureSchema)
 
 
 Base.metadata.create_all(engine)
@@ -67,9 +67,9 @@ messages = {
 
 
 @app.route('/products', methods=['GET'])
-def index():
+def indexProducts():
     try:
-        offset = app.current_request.query_params.get("offset", 1)
+        offset = app.current_request.query_params.get("offset", 0)
         limit = app.current_request.query_params.get("limit", 10)
         search = app.current_request.query_params.get("search", "")
         products = []
@@ -89,7 +89,7 @@ def index():
 
 
 @app.route('/product/{id}', methods=['GET'])
-def show(id):
+def showProduct(id):
     try:
         with Session(engine) as session:
             data = session.query(Product).where(Product.id == id).first()
@@ -109,7 +109,7 @@ def show(id):
 
 
 @app.route('/product', methods=['POST'])
-def store():
+def storeProduct():
     try:
         json_body = app.current_request.json_body
         product = Product(
@@ -133,7 +133,7 @@ def store():
 
 
 @app.route('/product/{id}', methods=['PUT'])
-def update(id):
+def updateProduct(id):
     try:
         json_body = app.current_request.json_body
 
@@ -160,7 +160,7 @@ def update(id):
 
 
 @app.route('/product/{id}', methods=['DELETE'])
-def destroy(id):
+def destroyProduct(id):
     try:
         with Session(engine) as session:
             product = session.query(Product).where(Product.id == id).first()
