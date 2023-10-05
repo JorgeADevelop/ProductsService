@@ -62,7 +62,7 @@ messages = {
     "RecordDeleted": "The {resource} with id '{id}'has been deleted successfully",
     "RecordNotFound": "The {resource} with id '{id}' has not been found",
     "RecordAlreadyExists": "The {resource} already exists",
-    "InternalError": "An error occurred during your request, please try again"
+    "InternalError": "An error occurred during your request, please try again",
 }
 
 
